@@ -1,0 +1,1 @@
+INSERT INTO BOOK (ID,BOOK_NAME,BOOK_AUTHOR,PRICE) VALUES (1,'Anna Karenina','Lev Tolstoy',1.1);
