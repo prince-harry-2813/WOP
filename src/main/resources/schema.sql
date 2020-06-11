@@ -1,4 +1,3 @@
-CREATE TABLE BOOK (ID INT PRIMARY KEY,
-                    BOOK_NAME VARCHAR(25),
-                    BOOK_AUTHOR VARCHAR(25),
-                    PRICE FLOAT );
+CREATE TABLE POKEMON (ID INT PRIMARY KEY,
+                    NAME VARCHAR(25),
+                    TYPE VARCHAR(25) );
