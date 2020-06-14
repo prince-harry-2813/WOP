@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
+/**
+ * Pokemon controller
+ */
 @RestController
 @RequestMapping("/pokemon")
 public class PokemonController {
@@ -22,6 +24,10 @@ public class PokemonController {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    /**
+     * Get all pokemons in the world
+     * @return List of pokemons in the world.
+     */
     @GetMapping("/list")
     public PokemonList getPokemons() {
         List<Pokemon> rows = jdbcTemplate.query("SELECT * from POKEMON",new PokemonRawMapper());

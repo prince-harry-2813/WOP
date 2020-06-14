@@ -2,6 +2,9 @@ package com.plainid.assignment.dao;
 
 import java.util.List;
 
+/**
+ * List of pojenons
+ */
 public class PokemonList {
     List<Pokemon> pokemons;
 

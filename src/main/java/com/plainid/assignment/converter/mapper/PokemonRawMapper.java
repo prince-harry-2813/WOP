@@ -7,6 +7,9 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Hellper class to map SQL results to pokemon pojo
+ */
 public class PokemonRawMapper implements RowMapper<Pokemon> {
     @Override
     public Pokemon mapRow(ResultSet rs, int rowNum) throws SQLException {

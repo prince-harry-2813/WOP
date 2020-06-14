@@ -1,5 +1,10 @@
 package com.plainid.assignment.dao;
 
+/**
+ * Pokémon are creatures of all shapes and sizes who live in the wild or alongside humans.
+ * For the most part, Pokémon do not speak except to utter their names.
+ * There are currently more than 700 creatures that inhabit the Pokémon universe.
+ */
 public class Pokemon {
 
     int id;
