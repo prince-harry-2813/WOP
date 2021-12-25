@@ -6,5 +6,5 @@ package com.plainid.assignment.dao;
  * Pokemon from particular type has advantage or weakness against other types
  */
 public enum PokemonType {
-    Grass,Water,Fire
+    Grass,Fire,Water
 }

@@ -2,7 +2,7 @@ package com.plainid.assignment.controller;
 
 
 import com.plainid.assignment.converter.mapper.PokemonRawMapper;
-import com.plainid.assignment.dao.Pokemon;
+import com.plainid.assignment.dao.primitives.Pokemon;
 import com.plainid.assignment.dao.PokemonList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

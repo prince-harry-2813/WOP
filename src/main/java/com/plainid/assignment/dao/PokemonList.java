@@ -1,9 +1,11 @@
 package com.plainid.assignment.dao;
 
+import com.plainid.assignment.dao.primitives.Pokemon;
+
 import java.util.List;
 
 /**
- * List of pojenons
+ * List of pokemons
  */
 public class PokemonList {
     List<Pokemon> pokemons;
