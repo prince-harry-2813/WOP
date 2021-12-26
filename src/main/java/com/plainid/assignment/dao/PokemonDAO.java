@@ -17,6 +17,7 @@ public class PokemonDAO implements IDAO<Pokemon, String> {
 
     /**
      * get Pokemon by name
+     *
      * @param name of pokemon
      * @return Pokemon
      */
@@ -28,6 +29,7 @@ public class PokemonDAO implements IDAO<Pokemon, String> {
 
     /**
      * get all pokemons
+     *
      * @return List of all pokemons
      */
     @Override
@@ -38,10 +40,14 @@ public class PokemonDAO implements IDAO<Pokemon, String> {
 
     @Override
     public void save(Pokemon pokemon) {
+        jdbcTemplate.update("INSERT into POKEMON (ID,NAME,TYPE) VALUES (" + pokemon.getId() + ',' + pokemon.getName() + ',' + pokemon.getType().name() + ");");
     }
 
     @Override
-    public void update(Pokemon... pokemon) {
+    public void update(Pokemon... pokemons) {
+        for (Pokemon pok : pokemons) {
+            jdbcTemplate.update("update POKEMON set NAME =" + pok.getName() + ",TYPE = " + pok.getType().name()+" WHERE ID = "+pok.getId());
+        }
     }
 
     @Override

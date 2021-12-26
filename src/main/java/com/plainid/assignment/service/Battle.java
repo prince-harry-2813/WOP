@@ -1,5 +1,6 @@
 package com.plainid.assignment.service;
 
+import com.plainid.assignment.dao.PokemonType;
 import com.plainid.assignment.dao.primitives.Trainer;
 
 public class Battle {
@@ -37,8 +38,10 @@ public class Battle {
         }
         int result = 0;
         for (int i = 0; i < 3; i++) {
-            int p1 = t1.getBag().get(i).getType().ordinal();
-            int p2 = t2.getBag().get(i).getType().ordinal();
+            PokemonType pokemonType = PokemonType.Fire;
+            int p1 = t1.getBag().get(i).getType().getValue();
+            int p2 = t2.getBag().get(i).getType().getValue();
+
             //draw
             if (p1 == p2)
                 continue;

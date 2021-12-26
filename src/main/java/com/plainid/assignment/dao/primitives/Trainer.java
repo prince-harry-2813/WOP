@@ -1,7 +1,5 @@
 package com.plainid.assignment.dao.primitives;
 
-import com.plainid.assignment.dao.primitives.Pokemon;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +41,12 @@ public class Trainer {
         this.bag = bag;
     }
 
+    /**
+     * FIFO implement - if there is more than 3 pokemons in the bag, removing the oldest/first one
+     * @param pokemon to add
+     */
     public void addToBag(Pokemon pokemon) {
-        this.bag.add(pokemon);
+        bag.add(pokemon);
         if (bag.size() > 3)
             bag.remove(0);
     }
