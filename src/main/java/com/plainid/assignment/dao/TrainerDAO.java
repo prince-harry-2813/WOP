@@ -31,6 +31,7 @@ public class TrainerDAO implements IDAO<Trainer, String> {
 
     /**
      * get all trainers from db
+     *
      * @return list of all trainers
      */
     @Override
@@ -66,12 +67,13 @@ public class TrainerDAO implements IDAO<Trainer, String> {
 
     /**
      * update trainer bag
+     *
      * @param trainer to update his bag
      */
     public void updateBag(Trainer trainer) {
         int i = 1;
         for (Pokemon po : trainer.getBag()) {
-            String updateQuery = " UPDATE BAG SET PID" + i + " = " + trainer.getBag().get(i - 1).getId() + " WHERE TID = " + trainer.getId();
+            String updateQuery = " UPDATE BAG SET PID" + i + " = " + po.getId() + " WHERE TID = " + trainer.getId();
             jdbcTemplate.update(updateQuery);
             i++;
         }
