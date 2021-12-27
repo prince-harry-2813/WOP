@@ -3,6 +3,7 @@ package com.plainid.assignment;
 import com.plainid.assignment.dao.TrainerList;
 import com.plainid.assignment.dao.primitives.Pokemon;
 import com.plainid.assignment.dao.primitives.Trainer;
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class TrainerTest {
     public void testGetAllTrainers() {
         TrainerList trainerList = restTemplate.getForEntity("http://localhost:" + port + "/trainers", TrainerList.class).getBody();
         assertThat(trainerList).isNotNull();
-
+        assertThat(trainerList.getTrainers().size()).isEqualTo(5);
     }
 
     /**
@@ -48,6 +49,9 @@ public class TrainerTest {
         }
     }
 
+    /**
+     * test for get trainer by name with invalid input
+     */
     @Test
     public void testGetTrainerInvalid() {
         Trainer trainer = restTemplate.getForObject("http://localhost:" + port + "/trainer/ss;%20DROP%20TABLE%20TRAINERS", Trainer.class);
@@ -66,5 +70,34 @@ public class TrainerTest {
         assertThat(bag).isNotNull();
         assertThat(bag[0].getName()).isEqualTo(pNames[index]);
 
+    }
+
+    /**
+     * test adding Pokemon to a full bag - include Bonus Check
+     * initial bag status:[1 : Bulbasaur , 2 : Lapras, 3 : Fennekin]
+     * after catch we expect to receive updated bag: [1: Lapras , 2: Fennekin 3: NewOther]
+     */
+    @Test
+    public void testUpdateTrainerWithFullBag() {
+        String[] pNames = {"Charizard", "Vulpix", "Golduck", "Victreebel", "Kingler", "Magmar", "Magikarp", "Vaporeon", "Chikorita", "Cyndaquil", "Sunflora", "Sharpedo"};
+        int index = new Random().nextInt(pNames.length - 1);
+        Pokemon[] bag = restTemplate.getForObject("http://localhost:" + port + "/trainer/Arie/catch/" + pNames[index], Pokemon[].class);
+        assertThat(bag[0].getName()).isEqualTo("Lapras");
+        assertThat(bag[1].getName()).isEqualTo("Fennekin");
+        assertThat(bag[2].getName()).isEqualTo(pNames[index]);
+        Assertions.assertThatExceptionOfType(ArrayIndexOutOfBoundsException.class).isThrownBy(() -> bag[3].getName());
+    }
+
+    /**
+     * test adding Pokemon to a bag that already contain that Pokemon
+     * initial bag status: [1 : Sharpedo , 2 : Vaporeon, 3 : ]
+     * after catch we expect to receive same bag: [1 : Sharpedo , 2 : Vaporeon, 3 : ]
+     */
+    @Test
+    public void testUpdateTrainerWithExistPokemon() {
+        Pokemon[] bag = restTemplate.getForObject("http://localhost:" + port + "/trainer/Smith/catch/Sharpedo", Pokemon[].class);
+        assertThat(bag[0].getName()).isEqualTo("Sharpedo");
+        assertThat(bag[1].getName()).isEqualTo("Vaporeon");
+        Assertions.assertThatExceptionOfType(ArrayIndexOutOfBoundsException.class).isThrownBy(() -> bag[2].getName());
     }
 }

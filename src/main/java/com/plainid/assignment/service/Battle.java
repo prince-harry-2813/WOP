@@ -38,18 +38,17 @@ public class Battle {
         }
         int result = 0;
         for (int i = 0; i < 3; i++) {
-            PokemonType pokemonType = PokemonType.Fire;
             int p1 = t1.getBag().get(i).getType().getValue();
             int p2 = t2.getBag().get(i).getType().getValue();
 
             //draw
             if (p1 == p2)
                 continue;
-            //Trainer 2 wins
+            //Trainer 2 wins the round
             if ((p1 + 1) % 3 == p2) {
                 result--;
             }
-            // Trainer 1 wins
+            // Trainer 1 wins the round
             else result++;
         }
         if (result == 0) {

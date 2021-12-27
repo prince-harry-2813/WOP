@@ -1,5 +1,4 @@
 package com.plainid.assignment.dao.primitives;
-
 import com.plainid.assignment.dao.PokemonType;
 
 /**
@@ -10,7 +9,7 @@ import com.plainid.assignment.dao.PokemonType;
 
 public class Pokemon {
 
-    int id;
+   int id;
     String name;
     PokemonType type;
 

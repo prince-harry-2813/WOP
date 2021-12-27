@@ -46,7 +46,8 @@ public class Trainer {
      * @param pokemon to add
      */
     public void addToBag(Pokemon pokemon) {
-        bag.add(pokemon);
+        if (bag.stream().noneMatch(i -> i.getName().equals(pokemon.getName())))
+            bag.add(pokemon);
         if (bag.size() > 3)
             bag.remove(0);
     }

@@ -5,6 +5,9 @@ import com.plainid.assignment.dao.primitives.Trainer;
 import java.util.List;
 
 
+/**
+ * List of Trainers
+ */
 public class TrainerList {
 
     List<Trainer> trainers;

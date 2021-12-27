@@ -10,12 +10,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Trainer Controller
+ */
 @RestController
 public class TrainerController {
 
     TrainerDAO tdao;
     PokemonDAO pdao;
 
+    /**
+     * Trainer Controller Ctor for TrainerDAO and PokemonDAO injection
+     * @param tdao
+     * @param pdao
+     */
     @Autowired
     public TrainerController(TrainerDAO tdao, PokemonDAO pdao) {
         this.tdao = tdao;

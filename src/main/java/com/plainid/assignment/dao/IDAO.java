@@ -2,6 +2,12 @@ package com.plainid.assignment.dao;
 
 import java.util.List;
 
+
+/**
+ * Generic interface with basic CRUD methods to implement in DAO's
+ * @param <T> Object Type
+ * @param <K> Object key Parameter
+ */
 public interface IDAO <T,K> {
 
 

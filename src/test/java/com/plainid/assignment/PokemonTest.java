@@ -21,12 +21,17 @@ public class PokemonTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    /**
+     * test for get all pokemons
+     */
     @Test
-    public void testGetAllPokemons(){
+    public void testGetAllPokemons() {
         PokemonList pokemonList = restTemplate.getForEntity("http://localhost:" + port + "/pokemon/list",
                 PokemonList.class).getBody();
         assertThat(pokemonList).isNotNull();
         assertThat(pokemonList.getPokemons()).isNotNull();
 
     }
+
+
 }

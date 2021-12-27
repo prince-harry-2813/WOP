@@ -6,6 +6,7 @@ package com.plainid.assignment.dao;
  * Pokemon from particular type has advantage or weakness against other types
  */
 public enum PokemonType {
+
     Grass(0),
     Fire(1),
     Water(2);
@@ -16,6 +17,9 @@ public enum PokemonType {
         this.value = value;
     }
 
+    /**
+     * @return PokemonType Enum numeric value
+     */
     public int getValue() {
         return value;
     }

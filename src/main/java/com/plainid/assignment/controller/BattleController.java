@@ -10,17 +10,30 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * battle Controller
+ */
 @RestController
 @RequestMapping("/battle")
 public class BattleController {
 
     TrainerDAO tDao;
 
+    /**
+     *Battle controller Ctor to initiate tdao injection
+     * @param tDao
+     */
     @Autowired
     public BattleController(TrainerDAO tDao) {
         this.tDao = tDao;
     }
 
+    /**
+     * rest controller for batlle call
+     * @param trainer_1 name, param from url
+     * @param trainer_2 name, param from url
+     * @return Battle response with Status of battle and message
+     */
     @GetMapping("/{trainer_1}/{trainer_2}")
     public Battle fight(@PathVariable("trainer_1") String trainer_1, @PathVariable("trainer_2") String trainer_2) {
 

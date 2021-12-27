@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 
+/**
+ *  implementation of DAO for Pokemons
+ */
 @Repository
 public class TrainerDAO implements IDAO<Trainer, String> {
 
@@ -17,33 +20,28 @@ public class TrainerDAO implements IDAO<Trainer, String> {
     JdbcTemplate jdbcTemplate;
 
     /**
-     * get trainer from DB by name
-     *
+     * get trainer from DB by name, using prepared Statement to avoid SQL injection
      * @param name of trainer to look up
      * @return Trainer
      */
     @Override
     public Trainer get(String name) {
         String sql = "SELECT TRAINER.TID, TRAINER.NAME, LEVEL,PID1, P1.NAME AS PNAME1, P1.TYPE AS TYPE1, PID2, P2.NAME AS PNAME2, P2.TYPE AS TYPE2,  PID3, P3.NAME AS PNAME3, P3.TYPE AS TYPE3 FROM TRAINER NATURAL JOIN BAG LEFT JOIN POKEMON P1 ON BAG.PID1  = P1.ID LEFT JOIN POKEMON P2 ON BAG.PID2 = P2.ID LEFT JOIN POKEMON P3 ON BAG.PID3 = P3.ID WHERE TRAINER.NAME = ?";
-
         return jdbcTemplate.query(sql, preparedStatement -> preparedStatement.setString(1, name), new TrainerRowMapper()).get(0);
     }
 
     /**
-     * get all trainers from db
-     *
+     * get all trainers from db ordered by level
      * @return list of all trainers
      */
     @Override
     public List<Trainer> getAll() {
         String sql = "SELECT TRAINER.TID, TRAINER.NAME, LEVEL,PID1, P1.NAME AS PNAME1, P1.TYPE AS TYPE1, PID2, P2.NAME AS PNAME2, P2.TYPE AS TYPE2,  PID3, P3.NAME AS PNAME3, P3.TYPE AS TYPE3 FROM TRAINER NATURAL JOIN BAG LEFT JOIN POKEMON P1 ON BAG.PID1  = P1.ID LEFT JOIN POKEMON P2 ON BAG.PID2 = P2.ID LEFT JOIN POKEMON P3 ON BAG.PID3 = P3.ID ORDER BY LEVEL DESC";
-
         return jdbcTemplate.query(sql, new TrainerRowMapper());
     }
 
     /**
      * save new trainer to DB
-     *
      * @param trainer new trainer to add
      */
     @Override
@@ -53,7 +51,6 @@ public class TrainerDAO implements IDAO<Trainer, String> {
 
     /**
      * updating Trainer level
-     *
      * @param trainers trainers to update
      */
     @Override
@@ -67,7 +64,6 @@ public class TrainerDAO implements IDAO<Trainer, String> {
 
     /**
      * update trainer bag
-     *
      * @param trainer to update his bag
      */
     public void updateBag(Trainer trainer) {
@@ -81,7 +77,6 @@ public class TrainerDAO implements IDAO<Trainer, String> {
 
     /**
      * delete trainer from db
-     *
      * @param trainer to delete
      */
     @Override
